@@ -13,6 +13,10 @@ const Types = [
   },
   {
     id: "3",
+    name: "GOLD",
+  },
+  {
+    id: "4",
     name: "PLAYHOUSE",
   },
 ];
