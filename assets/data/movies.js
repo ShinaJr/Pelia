@@ -32,7 +32,7 @@ const Movies = [
     image: require("../images/devotion1.jpg"),
     name: "DEVOTION",
     language: "English",
-    genre: "WAR/ACTIO",
+    genre: "WAR/ACTION",
   },
   {
     id: "5",
