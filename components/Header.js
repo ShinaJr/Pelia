@@ -84,11 +84,32 @@ const Header = () => {
           </Text>
         </Pressable>
       </ImageBackground>
-      <View style={{ marginTop: 110,}}>
-        <ScrollView style={{ flexDirection: "row", marginRight:30}} horizontal={true} showsHorizontalScrollIndicator={false}>
+      <View style={{ marginTop: 110 }}>
+        <ScrollView
+          style={{ flexDirection: "row", marginRight: 30 }}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+        >
           {Types.map((type, id) => (
-            <Pressable key={id} style={{margin:10, borderColor:"#c0c0c0", borderWidth:0.5, borderRadius:4, padding:10}}>
-              <Text style={{fontFamily:"Petrona_500Medium", textAlign:"center", fontSize: 14}}>{type.name}</Text>  
+            <Pressable
+              key={id}
+              style={{
+                margin: 10,
+                borderColor: "#c0c0c0",
+                borderWidth: 0.5,
+                borderRadius: 4,
+                padding: 10,
+              }}
+            >
+              <Text
+                style={{
+                  fontFamily: "Petrona_500Medium",
+                  textAlign: "center",
+                  fontSize: 14,
+                }}
+              >
+                {type.name}
+              </Text>
             </Pressable>
           ))}
         </ScrollView>
