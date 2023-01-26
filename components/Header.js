@@ -8,8 +8,10 @@ import {
 } from "react-native";
 import React from "react";
 import Types from "../assets/data/types";
+import { useNavigation } from "@react-navigation/native";
 
 const Header = () => {
+  const navigation = useNavigation();
   return (
     <View>
       <ImageBackground
@@ -65,6 +67,9 @@ const Header = () => {
                 padding: 10,
                 borderRadius: 6,
                 marginRight: 10,
+              }}
+              onPress={() => {
+                navigation.navigate("Movie");
               }}
             >
               <Text

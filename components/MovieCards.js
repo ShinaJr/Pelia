@@ -9,8 +9,10 @@ import {
 import React from "react";
 import Movies from "../assets/data/movies";
 import Header from "./Header";
+import { useNavigation } from "@react-navigation/native";
 
 const MovieCards = () => {
+  const navigation = useNavigation();
   return (
     <View>
       <FlatList
@@ -30,8 +32,8 @@ const MovieCards = () => {
               style={{
                 marginLeft: 10,
                 fontSize: 16,
-                fontFamily: "Petrona_600SemiBold",
-                width: 150,
+                fontFamily: "Petrona_700Bold",
+                width: 160,
                 marginTop: 10,
               }}
             >
@@ -53,11 +55,36 @@ const MovieCards = () => {
                 marginLeft: 10,
                 marginTop: 4,
                 fontSize: 14,
-                fontFamily: "Petrona_500Medium",
+                fontFamily: "Petrona_600SemiBold",
+                color: "#000",
               }}
             >
               {item.genre}
             </Text>
+            <Pressable
+              style={{
+                backgroundColor: "#3339FF",
+                padding: 10,
+                borderRadius: 6,
+                marginLeft: 10,
+                width: 100,
+                marginTop: 10,
+              }}
+              onPress={() => {
+                navigation.navigate("Movie", {item});
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 14,
+                  fontFamily: "Petrona_600SemiBold",
+                  textAlign: "center",
+                  color: "#fff",
+                }}
+              >
+                BOOK
+              </Text>
+            </Pressable>
           </Pressable>
         )}
         keyExtractor={(item) => item.id}

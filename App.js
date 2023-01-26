@@ -1,7 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import HomeScreen from "./screens/HomeScreen";
 import AppLoading from "expo-app-loading";
 import {
   useFonts,
@@ -10,6 +9,7 @@ import {
   Petrona_600SemiBold,
   Petrona_700Bold,
 } from "@expo-google-fonts/petrona";
+import StackNavigator from "./navigation/StackNavigator";
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -25,7 +25,7 @@ export default function App() {
     return (
       <SafeAreaProvider>
         <View style={styles.container}>
-          <HomeScreen />
+          <StackNavigator/>
           <StatusBar style="auto" />
         </View>
       </SafeAreaProvider>

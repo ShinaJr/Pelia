@@ -81,7 +81,7 @@ const Movies = [
     image: require("../images/violentHeight1.jpg"),
     name: "VIOLENT NIGHT",
     language: "English",
-    genre: "ACTION/DARK COMEDY",
+    genre: "ACTION/COMEDY",
   },
   {
     id: "12",
