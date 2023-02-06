@@ -71,7 +71,7 @@ const MovieCards = () => {
                 marginTop: 10,
               }}
               onPress={() => {
-                navigation.navigate("Movie", {item});
+                navigation.navigate("Movie", item);
               }}
             >
               <Text

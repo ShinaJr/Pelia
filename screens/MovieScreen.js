@@ -5,10 +5,12 @@ import { Ionicons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import HorizontalDatepicker from "@awrminkhodaei/react-native-horizontal-datepicker";
 import mallsData from "../assets/data/malls";
+import { useRoute } from "@react-navigation/native";
 
 const MovieScreen = ({ route, navigation }) => {
-  const { item } = route.params;
+  const item1 = route.params;
   const [SelectedDate, setSelectedDate] = useState("");
+  const [seatsData, setSeatsData] = useState([]); //here we'll be set the table data to the seats data to get the seat data in the theatre screen.
   const [mall, setMall] = useState([]);
   return (
     <SafeAreaView>
@@ -35,7 +37,7 @@ const MovieScreen = ({ route, navigation }) => {
               fontFamily: "Petrona_700Bold",
             }}
           >
-            {item.name}
+            {item1.name}
           </Text>
         </View>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -86,7 +88,13 @@ const MovieScreen = ({ route, navigation }) => {
       />
       <View>
         {mallsData.map((item, index) => (
-          <Pressable onPress={() => setMall(item.name)} key={index}>
+          <Pressable
+            onPress={() => {
+              setMall(item.name);
+              setSeatsData(item.tableData);
+            }}
+            key={index}
+          >
             <Text
               style={{
                 margin: 10,
@@ -102,6 +110,14 @@ const MovieScreen = ({ route, navigation }) => {
                 numColumns={3}
                 renderItem={({ item }) => (
                   <Pressable
+                    onPress={() =>
+                      navigation.navigate("Theatre", {
+                        name: item1.name,
+                        timeSelected: item,
+                        mall: mall,
+                        tableSeats: seatsData,
+                      })
+                    }
                     style={{
                       borderColor: "#3339FF",
                       borderWidth: 0.5,

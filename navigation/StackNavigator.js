@@ -4,6 +4,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "../screens/HomeScreen";
 import MovieScreen from "../screens/MovieScreen";
+import TheatreScreen from "../screens/TheatreScreen";
+import TicketScreen from "../screens/TicketScreen";
 
 const StackNavigator = () => {
   const Stack = createNativeStackNavigator();
@@ -19,6 +21,16 @@ const StackNavigator = () => {
         <Stack.Screen
           name="Movie"
           component={MovieScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Theatre"
+          component={TheatreScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Ticket"
+          component={TicketScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

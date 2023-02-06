@@ -10,6 +10,7 @@ import {
   Petrona_700Bold,
 } from "@expo-google-fonts/petrona";
 import StackNavigator from "./navigation/StackNavigator";
+import { MovieContext } from "./Context.js";
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -25,8 +26,10 @@ export default function App() {
     return (
       <SafeAreaProvider>
         <View style={styles.container}>
-          <StackNavigator/>
-          <StatusBar style="auto" />
+          <MovieContext>
+            <StackNavigator />
+            <StatusBar style="auto" />
+          </MovieContext>
         </View>
       </SafeAreaProvider>
     );
