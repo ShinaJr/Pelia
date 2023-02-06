@@ -9,7 +9,7 @@ import { useRoute } from "@react-navigation/native";
 
 const MovieScreen = ({ route, navigation }) => {
   const item1 = route.params;
-  const [SelectedDate, setSelectedDate] = useState("");
+  const [selectedDate, setSelectedDate] = useState("");
   const [seatsData, setSeatsData] = useState([]); //here we'll be set the table data to the seats data to get the seat data in the theatre screen.
   const [mall, setMall] = useState([]);
   return (
@@ -72,9 +72,9 @@ const MovieScreen = ({ route, navigation }) => {
       </View>
       <HorizontalDatepicker
         mode="gregorian"
-        startDate={new Date("2023-02-01")}
-        endDate={new Date("2023-02-22")}
-        initialSelectedDate={new Date("2020-08-22")}
+        startDate={new Date("2023-03-01")}
+        endDate={new Date("2023-03-31")}
+        initialSelectedDate={new Date("2023-03-01")}
         onSelectedDateChange={(date) => setSelectedDate(date)}
         selectedItemWidth={170}
         unselectedItemWidth={38}
@@ -115,7 +115,9 @@ const MovieScreen = ({ route, navigation }) => {
                         name: item1.name,
                         timeSelected: item,
                         mall: mall,
+                        image: item1.image,
                         tableSeats: seatsData,
+                        date: selectedDate,
                       })
                     }
                     style={{

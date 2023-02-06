@@ -19,7 +19,7 @@ import TicketScreen from "./TicketScreen";
 
 const TheatreScreen = ({ route, navigation }) => {
   const item = route.params;
-  const { seats, setSeats } = useContext(MoviesCards); //getting access to the seats using context.
+  const { seats, setSeats, occupied, setOccupied } = useContext(MoviesCards); //getting access to the seats, occupied values using context.
   const onSeatSelect = (item) => {
     const seatSelected = seats.find((seat) => seat === item);
     if (seatSelected) {
@@ -28,6 +28,9 @@ const TheatreScreen = ({ route, navigation }) => {
       setSeats([...seats, item]);
     }
   };
+  //showing the seats selected
+  const displaySeats = [...seats];
+
   const showSeats = () => {
     return (
       <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -46,9 +49,11 @@ const TheatreScreen = ({ route, navigation }) => {
       </View>
     );
   };
+
   //initializing payments
   const fee = 500;
   const numberOfSeats = seats.length;
+  const priceValue = numberOfSeats * 4000;
   const total = seats.length === 0 ? 0 : fee + numberOfSeats * 4000;
 
   //integrating paystack
@@ -69,7 +74,20 @@ const TheatreScreen = ({ route, navigation }) => {
           Alert.alert("Payment cancelled!");
         }}
         onSuccess={(res) => {
-          navigation.navigate("Ticket", res);
+          occupied.push(...seats); //here we're pushing the seats chosen to the occupied array.
+          navigation.navigate("Ticket", {
+            name: item.name,
+            mall: item.mall,
+            timeSelected: item.timeSelected,
+            total: total,
+            image: item.image,
+            date: item.date,
+            selectedSeats: displaySeats,
+            priceValue: priceValue,
+            fee: fee,
+          });
+
+          setSeats([]); //setting the seats back to null
         }}
         ref={paystackWebViewRef}
       />
@@ -142,12 +160,12 @@ const TheatreScreen = ({ route, navigation }) => {
               onPress={() => onSeatSelect(item)}
               style={{
                 margin: 10,
-                borderColor: "#3339FF",
                 borderWidth: 0.5,
                 borderRadius: 6,
+                borderColor: "gray",
               }}
             >
-              {seats.includes(item) ? (
+              {seats.includes(item) ? ( //if
                 <Text
                   style={{
                     fontSize: 14,
@@ -160,7 +178,22 @@ const TheatreScreen = ({ route, navigation }) => {
                 >
                   {item}
                 </Text>
+              ) : //else if
+              occupied.includes(item) ? (
+                <Text
+                  style={{
+                    fontSize: 14,
+                    textAlign: "center",
+                    fontFamily: "Petrona_500Medium",
+                    padding: 7,
+                    color: "#fff",
+                    backgroundColor: "#989898",
+                  }}
+                >
+                  {item}
+                </Text>
               ) : (
+                //else
                 <Text
                   style={{
                     fontSize: 14,

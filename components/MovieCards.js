@@ -9,10 +9,15 @@ import {
 import React from "react";
 import Movies from "../assets/data/movies";
 import Header from "./Header";
+import Ticket from "./Ticket";
 import { useNavigation } from "@react-navigation/native";
+import { MoviesCards } from "../Context";
+import { useContext } from "react";
 
 const MovieCards = () => {
   const navigation = useNavigation();
+  //getting access to the ticket global variable
+  const { ticket } = useContext(MoviesCards);
   return (
     <View>
       <FlatList
@@ -90,7 +95,7 @@ const MovieCards = () => {
         keyExtractor={(item) => item.id}
         showsVerticalScrollIndicator={false}
         numColumns={2}
-        ListHeaderComponent={Header}
+        ListHeaderComponent={ticket.length>0? Ticket : Header}
       />
     </View>
   );
